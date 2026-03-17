@@ -9,3 +9,8 @@ services:
       - ./monprojet/:/app
     environment:
       - SERVER_NAME=localhost
+      - REDIS_HOST=redis      
+  redis:
+    image: redis:alpine
+    ports:
+      - "6380:6379"
