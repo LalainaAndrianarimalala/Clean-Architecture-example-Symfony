@@ -1,3 +1,4 @@
+#  PROJET PRATIQUE CLEAN ARCHI,DOCKER,FRANKEN PHP
 # 👤 Timesheet App — MCD : Utilisateurs, Rôles & Vote
 
 > Modèle Merise détaillé pour la gestion des utilisateurs, des rôles avec configuration fine et le système de vote de validation.
