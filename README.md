@@ -35,6 +35,11 @@ docker compose exec php php bin/console make:migration   # optionnel si déjà g
 
 docker compose exec php php bin/console doctrine:migrations:migrate --no-interaction
 
+# Configuration env
+Créer le fichier env pour parametrer la base de données
+
+execute apres : composer dump-env dev
+
 # 🕐 Timesheet App — Modèle Conceptuel de Données (MCD)
 
 > Modèle Merise de l'application de gestion des temps — Société / Indépendant
