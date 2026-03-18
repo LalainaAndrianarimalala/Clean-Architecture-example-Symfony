@@ -28,10 +28,7 @@ Merci de votre intérêt pour cet exercice ! Voici les étapes recommandées pou
 docker compose up -d --build
 
 # Installer les dépendances PHP (première fois)
-docker compose exec php composer install
-
-# Créer la base de données si elle n'existe pas
-docker compose exec php php bin/console doctrine:database:create --if-not-exists
+ composer install
 
 # Générer et appliquer les migrations Doctrine
 docker compose exec php php bin/console make:migration   # optionnel si déjà généré
