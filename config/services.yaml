@@ -1,27 +1,19 @@
 # yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
 
 parameters:
-    # Ici, tu ne mets QUE des valeurs scalaires / configs simples
-    # (pas de @service_id, pas de références)
-    # Exemple si tu en avais besoin :
-    # app.some_value: 'hello'
+    # Valeurs scalaires uniquement ici
 
-    services:
-        # === Bindings d'interfaces vers implémentations concrètes ===
-        # Syntaxe courte et recommandée (Symfony 5.4+ / 6+ / 7+)
-        # Variante plus explicite (même résultat)
-        # App\Domain\Repository\UserRepositoryInterface:
-        #     alias: App\Infrastructure\Persistance\Doctrine\DoctrineUserRepository
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
 
-        # default configuration for services in *this* file
-        _defaults:
-            autowire: true      # Automatically injects dependencies in your services.
-            autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    App\:
+        resource: '../src/'
 
-        # makes classes in src/ available to be used as services
-        # this creates a service per class whose id is the fully-qualified class name
-        App\:
-            resource: '../src/'
+    # Binding interface → implémentation concrète
+    App\Domain\Utilisateur\Repository\UtilisateurRepositoryInterface:
+        alias: App\Infrastructure\Persistance\Doctrine\Repository\UtilisateurRepository
 
-        # add more service definitions when explicit configuration is needed
-        # please note that last definitions always *replace* previous ones
+    # Plus besoin de définir manuellement CreateUtilisateurUseCase
+    # car autowire: true le résout automatiquement grâce à l'alias ci-dessus
