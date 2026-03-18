@@ -1,3 +1,42 @@
+# 🕐 Timesheet App — Gestion des temps
+
+**⚠️ Ce projet est un exercice personnel / pédagogique**  
+Il sert à mettre en pratique Symfony, Clean Architecture, Docker, Merise/MCD, gestion des temps, etc.  
+Il n'est **pas** destiné à une utilisation en production sans adaptations importantes (sécurité, tests exhaustifs, etc.).
+
+> Application de suivi des temps pour sociétés, indépendants et freelances
+
+## Contribuer au projet
+
+Merci de votre intérêt pour cet exercice ! Voici les étapes recommandées pour commencer à contribuer ou simplement le faire tourner en local :
+
+1. **Fork le projet**
+
+   Cliquez sur le bouton **Fork** en haut à droite de cette page pour créer votre propre copie du dépôt.
+
+2. **Cloner votre fork en local**
+
+   ```bash
+
+   git clone https://github.com/VOTRE_USERNAME/timesheet-app.git
+   cd timesheet-app
+   
+   git remote add upstream https://github.com/ANDRILALAINA97/timesheet-app.git
+   git fetch upstream
+
+   # Démarrer tous les services (PHP + MySQL + Redis + phpMyAdmin)
+docker compose up -d --build
+
+# Installer les dépendances PHP (première fois)
+docker compose exec php composer install
+
+# Créer la base de données si elle n'existe pas
+docker compose exec php php bin/console doctrine:database:create --if-not-exists
+
+# Générer et appliquer les migrations Doctrine
+docker compose exec php php bin/console make:migration   # optionnel si déjà généré
+docker compose exec php php bin/console doctrine:migrations:migrate --no-interaction
+
 # 🕐 Timesheet App — Modèle Conceptuel de Données (MCD)
 
 > Modèle Merise de l'application de gestion des temps — Société / Indépendant
