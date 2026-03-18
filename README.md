@@ -32,6 +32,7 @@ docker compose up -d --build
 
 # Générer et appliquer les migrations Doctrine
 docker compose exec php php bin/console make:migration   # optionnel si déjà généré
+
 docker compose exec php php bin/console doctrine:migrations:migrate --no-interaction
 
 # 🕐 Timesheet App — Modèle Conceptuel de Données (MCD)
