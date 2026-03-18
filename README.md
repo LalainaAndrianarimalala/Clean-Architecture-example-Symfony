@@ -41,7 +41,7 @@ docker compose exec php php bin/console doctrine:migrations:migrate --no-interac
 
 ---
 
-<!-- ## 📐 MCD — Diagramme Entité-Association
+**## 📐 MCD — Diagramme Entité-Association
 
 ```mermaid
 erDiagram
@@ -148,9 +148,7 @@ erDiagram
   UTILISATEUR ||--o{ RAPPORT : "génère"
 ```
 
----
-
-## 🗂️ Description des entités
+<!-- ## 🗂️ Description des entités
 
 ### `SOCIETE`
 Représente la structure employeuse (entreprise ou organisation).
@@ -321,9 +319,9 @@ Trace les exports et rapports générés par les utilisateurs.
 │  SAISIE_TEMPS · CATEGORIE_TACHE     │
 │      VALIDATION · RAPPORT           │
 └─────────────────────────────────────┘
-``` -->
+``` 
 
----
+--- -->
 
 > **Version** : 1.0 — Mars 2026  
 > **Méthode** : Merise — MCD (Modèle Conceptuel de Données)  
