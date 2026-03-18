@@ -43,7 +43,7 @@ docker compose exec php php bin/console doctrine:migrations:migrate --no-interac
 
 ---
 
-## 📐 MCD — Diagramme Entité-Association
+<!-- ## 📐 MCD — Diagramme Entité-Association
 
 ```mermaid
 erDiagram
@@ -323,7 +323,7 @@ Trace les exports et rapports générés par les utilisateurs.
 │  SAISIE_TEMPS · CATEGORIE_TACHE     │
 │      VALIDATION · RAPPORT           │
 └─────────────────────────────────────┘
-```
+``` -->
 
 ---
 
