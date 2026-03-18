@@ -1,0 +1,9 @@
+framework:
+    messenger:
+        transports:
+            async: 
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    # L'extension phpredis sera utilisée automatiquement 
+                    # si elle est détectée dans le conteneur.
+                    lazy: true
