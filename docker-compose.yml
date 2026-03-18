@@ -10,11 +10,12 @@ services:
     environment:
       - SERVER_NAME=localhost
       - REDIS_HOST=redis
+      - DATABASE_URL=mysql://app:secret@database:3306/timesheet?serverVersion=8.0&charset=utf8mb4
     depends_on:
       database:
         condition: service_healthy
-      redis:
-        condition: service_started
+    networks:
+      - app_network          # ✅ ajouté
 
   database:
     image: mysql:8.0
@@ -32,6 +33,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - app_network          # ✅ ajouté
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -45,11 +48,19 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    networks:
+      - app_network          # ✅ ajouté
 
   redis:
     image: redis:alpine
     ports:
       - "6380:6379"
+    networks:
+      - app_network          # ✅ ajouté
 
 volumes:
   db_data:
+
+networks:
+  app_network:
+    driver: bridge           # ✅ réseau partagé explicite
