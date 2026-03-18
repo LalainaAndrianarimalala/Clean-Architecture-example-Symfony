@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création Utilisateur - Symfony UX + Clean Arch{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Créer un utilisateur (Symfony UX + API REST)</h1>
+    <form id="user-form">
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" id="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Mot de passe</label>
+            <input type="password" id="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Créer l'utilisateur</button>
+    </form>
+
+    <div id="result" class="mt-4"></div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ importmap('app') }}
+    <script type="module">
+        import UserCreationController from '/assets/controllers/user-creation-controller.js';
+        Stimulus.register('user-creation', UserCreationController);
+    </script>
+{% endblock %}
