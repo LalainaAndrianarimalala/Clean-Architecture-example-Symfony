@@ -26,7 +26,8 @@ final readonly class CreateUtilisateurUseCase
             $command->email,
             '',
             $command->nom,
-            $command->prenom
+            $command->prenom,
+            $command->tauxHoraire
         );
 
         $hashedPassword = $this->passwordHasher->hashPassword($utilisateur,$command->plainPassword);
