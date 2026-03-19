@@ -28,7 +28,7 @@ Merci de votre intérêt pour cet exercice ! Voici les étapes recommandées pou
 docker compose up -d --build
 
 # Installer les dépendances PHP (première fois)
- composer install
+ docker compose exce php composer install
 
 # Générer et appliquer les migrations Doctrine
 docker compose exec php php bin/console make:migration   # optionnel si déjà généré
@@ -38,7 +38,7 @@ docker compose exec php php bin/console doctrine:migrations:migrate --no-interac
 # Configuration env
 Créer le fichier env pour parametrer la base de données
 
-execute apres : composer dump-env dev
+execute apres : docker compose exce php composer dump-env dev
 
 # 🕐 Timesheet App — Modèle Conceptuel de Données (MCD)
 
