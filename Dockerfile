@@ -7,6 +7,15 @@ RUN install-php-extensions \
     pdo \
     pdo_mysql \
     mysqli \
-    redis
+    redis \
+    zip
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /app
+
+COPY composer.json composer.lock ./
+
+COPY . .
+
+RUN composer dump-autoload
