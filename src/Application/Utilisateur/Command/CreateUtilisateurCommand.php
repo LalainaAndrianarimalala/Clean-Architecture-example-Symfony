@@ -8,8 +8,6 @@ final readonly class CreateUtilisateurCommand
         public string $email,
         public string $plainPassword,
         public string $nom,
-        public string $prenom,
-        public string $tauxHoraire
-    )
+        public string $prenom    )
     {}
 }

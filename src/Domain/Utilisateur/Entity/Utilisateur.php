@@ -30,10 +30,10 @@ class Utilisateur implements UserInterface,PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column]
-    private array $roles = ['ROLE_COLLABORATEUR'];
+    private array $roles = ['ROLE_USER'];
 
     #[ORM\Column(nullable:true)]
-    private ?float $tauxHoraire; 
+    private ?float $tauxHoraire=null; 
 
     #[ORM\Column]
     private string $devise = 'AR';

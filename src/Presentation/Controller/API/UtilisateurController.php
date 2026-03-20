@@ -44,9 +44,8 @@ final class UtilisateurController extends AbstractController
             $data['email'] ?? '',
             $data['password'] ?? '',
             $data['nom'] ?? '',
-            $data['prenom'] ?? '',
-            $data['tauxHoraire']
-        );
+            $data['prenom'] ?? ''
+            );
 
         $errors = $this->validator->validate($command);
         if(count($errors) > 0){
