@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Company\ReadModel;
-
+namespace App\Application\Company\Command;
 
 /**
- * Class CompanyDetailModel
+ * Class UpdateCompanyCommand
  * 
  * @author Eloi Charly <nandry556@gmail.com>
- * @package App\Application\Company\ReadModel
+ * @package App\Application\Company\Command
  */
 
-final readonly class CompanyDetailModel
+final readonly class UpdateCompanyCommand
 {
     public function __construct(
-        public int $id,
+        public int $companyId,
         public string $name,
         public string $siret,
         public string $address,

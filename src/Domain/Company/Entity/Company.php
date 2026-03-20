@@ -36,6 +36,17 @@ class Company
         $this->phone = $phone;
     }
 
+    public function update(
+        string $name, string $siret, string $address, string $email, string $phone
+    )
+    {
+        $this->name = $name;
+        $this->siret = $siret;
+        $this->address = $address;
+        $this->email = $email;
+        $this->phone = $phone;
+    }
+
     // Getters
     public function getId(): ?int
     {
