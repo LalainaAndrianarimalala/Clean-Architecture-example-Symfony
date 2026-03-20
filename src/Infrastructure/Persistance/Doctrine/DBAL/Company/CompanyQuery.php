@@ -18,13 +18,14 @@ trait CompanyQuery
     private function createBaseQuery()
     {
          return $this->connection->createQueryBuilder()
-        ->select('c.name', 'c.siret','c.address','c.email','c.phone')
+        ->select('c.id', 'c.name', 'c.siret','c.address','c.email','c.phone')
         ->from('company', 'c');
     }
 
     private function mapToCompanyModel(array $data): CompanyDetailModel
     {
         return new CompanyDetailModel(
+            $data['id'],
             $data['name'],
             $data['siret'],
             $data['address'],

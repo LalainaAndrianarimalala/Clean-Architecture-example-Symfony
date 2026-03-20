@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presentation\WriteModel;
 
+use App\Domain\Company\Entity\Company;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -31,5 +32,16 @@ final readonly class CompanyModel
         public string $phone
     )
     {
+    }
+
+    public static function createModel(Company $company): self
+    {
+        return new self(
+           $company->getName(),
+           $company->getSiret(),
+           $company->getAddress(),
+           $company->getEmail(),
+           $company->getPhone(),
+        );
     }
 }
