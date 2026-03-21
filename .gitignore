@@ -1,6 +1,7 @@
 
 ###> symfony/framework-bundle ###
 /migrations/
+/config/jwt/
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -11,3 +12,7 @@
 .env
 .env.dev
 ###< symfony/framework-bundle ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
