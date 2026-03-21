@@ -40,6 +40,11 @@ Créer le fichier env pour parametrer la base de données
 
 execute apres : docker compose exce php composer dump-env dev
 
+# Configuration JWT
+docker compose php composer require lexik/jwt-authentication-bundle
+docker compose php composer require symfony/uid
+docker compose php php bin/console lexik:jwt:generate-keypair
+
 # 🕐 Timesheet App — Modèle Conceptuel de Données (MCD)
 
 > Modèle Merise de l'application de gestion des temps — Société / Indépendant
