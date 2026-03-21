@@ -1,3 +1,4 @@
+# config/services.yaml
 # yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
 
 parameters:
@@ -10,10 +11,16 @@ services:
 
     App\:
         resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Presentation\Controller\API\UtilisateurController:
+        class: 'App\Presentation\Controller\API\UtilisateurController'
+        tags: ['controller.service_arguments']
 
     # Binding interface → implémentation concrète
     App\Domain\Utilisateur\Repository\UtilisateurRepositoryInterface:
-        alias: App\Infrastructure\Persistance\Doctrine\Repository\UtilisateurRepository
-
-    # Plus besoin de définir manuellement CreateUtilisateurUseCase
-    # car autowire: true le résout automatiquement grâce à l'alias ci-dessus
+        class: App\Infrastructure\Persistance\Doctrine\Repository\UtilisateurRepository
+        tags: ['doctrine.repository_service']
