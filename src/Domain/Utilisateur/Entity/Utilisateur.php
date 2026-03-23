@@ -2,12 +2,12 @@
 
 namespace App\Domain\Utilisateur\Entity;
 
-use App\Domain\Utilisateur\Repository\UtilisateurRepositoryInterface;
+use App\Infrastructure\Persistance\Doctrine\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UtilisateurRepositoryInterface::class)]
+#[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[ORM\Table(name: 'utilisateur')]
 class Utilisateur implements UserInterface,PasswordAuthenticatedUserInterface
 {
@@ -61,7 +61,7 @@ class Utilisateur implements UserInterface,PasswordAuthenticatedUserInterface
 
     public function getNom():string {return $this->nom;}
     public function getPrenom():string {return $this->prenom;}
-    public function getTauxHoraire():string {return $this->tauxHoraire;}
+    public function getTauxHoraire():?float {return $this->tauxHoraire;}
     public function getDevise():string {return $this->devise;}
     public function getCreatedAt():\DateTimeImmutable {return $this->createdAt;}
 }

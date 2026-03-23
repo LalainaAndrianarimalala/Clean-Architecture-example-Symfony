@@ -1,7 +1,17 @@
+login:
+    path: /api/login
+    methods: [POST]
+
 api_controllers:
-    resource: ../src/Presentation/Controller/Api/
+    resource: ../src/Presentation/Controller/API/
     type: attribute
 
 ui_controllers:
-    resource: ../src/Presentation/Controller/  # ou le dossier où est ton controller qui rend le template
+    resource: ../src/Presentation/Controller/
+    type: attribute
+    exclude:
+        - ../src/Presentation/Controller/API/
+
+api_client_nouveau:
+    resource: ../src/Presentation/Controller/API/Client/
     type: attribute
