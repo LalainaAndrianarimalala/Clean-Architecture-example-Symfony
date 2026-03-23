@@ -9,15 +9,19 @@ services:
       - ./:/app
     environment:
       - SERVER_NAME=localhost
-      - REDIS_HOST=redis
       - DATABASE_URL=mysql://app:secret@database:3306/timesheet?serverVersion=8.0&charset=utf8mb4
+      # BUG FIX : REDIS_URL était absent → PHP tentait redis://localhost (introuvable)
+      # et attendait 30 s jusqu'au timeout PHP.
+      # Le paramètre timeout=2 évite de bloquer si Redis est temporairement indisponible.
+      - REDIS_URL=redis://redis:6379?timeout=2
+      - MESSENGER_TRANSPORT_DSN=redis://redis:6379/messages
     depends_on:
       database:
         condition: service_healthy
       redis:
         condition: service_started
     networks:
-      - app_network          # ✅ ajouté
+      - app_network
 
   database:
     image: mysql:8.0
@@ -36,7 +40,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - app_network          # ✅ ajouté
+      - app_network
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -51,18 +55,18 @@ services:
       database:
         condition: service_healthy
     networks:
-      - app_network          # ✅ ajouté
+      - app_network
 
   redis:
     image: redis:alpine
     ports:
       - "6380:6379"
     networks:
-      - app_network          # ✅ ajouté
+      - app_network
 
 volumes:
   db_data:
 
 networks:
   app_network:
-    driver: bridge           # ✅ réseau partagé explicite
+    driver: bridge
