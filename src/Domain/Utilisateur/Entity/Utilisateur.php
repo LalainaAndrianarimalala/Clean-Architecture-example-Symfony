@@ -42,13 +42,18 @@ class Utilisateur implements UserInterface,PasswordAuthenticatedUserInterface
     private \DateTimeImmutable $createdAt;
 
 
-    public function __construct(string $email,string $motDePasse,string $nom,string $prenom)
+    public function __construct(string $email,string $nom,string $prenom)
     {
         $this->email = $email;
-        $this->motDePasse = $motDePasse;
+        $this->motDePasse = '';
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->createdAt = new \DateTimeImmutable();
+    }
+
+     public function setMotDePasse(string $hashedPassword): void
+    {
+        $this->motDePasse = $hashedPassword;
     }
 
     public function getId(): ?int{return $this->id;}
