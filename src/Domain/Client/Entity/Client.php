@@ -2,6 +2,7 @@
 
 namespace App\Domain\Client\Entity;
 
+use App\Domain\Company\Entity\Company;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity()]
@@ -11,6 +12,9 @@ class Client
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'client', cascade: ['persist'])]
+    private Company $company;
 
     #[ORM\Column()]
     private string $nom;
@@ -24,8 +28,10 @@ class Client
     #[ORM\Column()]
     private string $adresse;
 
-    public function __construct(string $nom,string $email,string $telephone,string $adresse)
+
+    public function __construct(Company $company,string $nom,string $email,string $telephone,string $adresse)
     {
+        $this->company = $company;
         $this->nom = $nom;
         $this->email = $email;
         $this->telephone = $telephone;
@@ -35,6 +41,11 @@ class Client
     public function getId():?int
     {
         return $this->id;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
     }
 
     public function getNom(): string
@@ -57,4 +68,5 @@ class Client
     {
         return $this->adresse;
     }
+
 }

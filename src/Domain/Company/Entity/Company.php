@@ -2,6 +2,9 @@
 
 namespace App\Domain\Company\Entity;
 
+use App\Domain\Client\Entity\Client;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity()]
@@ -27,8 +30,12 @@ class Company
     #[ORM\Column()]
     private string $phone;
 
+    #[ORM\OneToMany(targetEntity: Client::class,mappedBy: 'company')]
+    private Collection $client;
+
     public function __construct(string $name, string $siret, string $address, string $email, string $phone)
     {
+        $this->client = new ArrayCollection();
         $this->name = $name;
         $this->siret = $siret;
         $this->address = $address;
@@ -76,5 +83,10 @@ class Company
     public function getPhone(): string
     {
         return $this->phone;
+    }
+
+    public function getClient(): Collection
+    {
+        return $this->client;
     }
 }
