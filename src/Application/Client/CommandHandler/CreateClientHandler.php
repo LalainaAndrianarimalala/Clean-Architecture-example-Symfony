@@ -8,6 +8,9 @@ use App\Application\Client\Command\CreateClientCommand;
 use App\Domain\Client\Entity\Client;
 use App\Domain\Client\Exception\EmailAlreadyExistException;
 use App\Domain\Client\Repository\ClientRepository;
+use App\Domain\Company\Entity\Company;
+use App\Domain\Company\Repository\CompanyRepository;
+use DomainException;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -21,7 +24,8 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
  final readonly class CreateClientHandler
  {
     public function __construct(
-        private ClientRepository $clientRepository
+        private ClientRepository $clientRepository,
+        private CompanyRepository $companyRepository
     )
     {}
 
@@ -32,7 +36,14 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
             throw new EmailAlreadyExistException($command->email);
         }
 
+        $company = $this->companyRepository->getById($command->company['id']);
+
+        if(!$company){
+            throw new DomainException();
+        }
+
         $client = new Client(
+            company: $company,
             nom: $command->nom,
             email: $command->email,
             telephone: $command->telephone,
