@@ -10,9 +10,6 @@ services:
     environment:
       - SERVER_NAME=localhost
       - DATABASE_URL=mysql://app:secret@database:3306/timesheet?serverVersion=8.0&charset=utf8mb4
-      # BUG FIX : REDIS_URL était absent → PHP tentait redis://localhost (introuvable)
-      # et attendait 30 s jusqu'au timeout PHP.
-      # Le paramètre timeout=2 évite de bloquer si Redis est temporairement indisponible.
       - REDIS_URL=redis://redis:6379?timeout=2
       - MESSENGER_TRANSPORT_DSN=redis://redis:6379/messages
     depends_on:
@@ -25,6 +22,7 @@ services:
 
   database:
     image: mysql:8.0
+    restart: always
     ports:
       - "3306:3306"
     environment:
