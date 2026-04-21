@@ -29,6 +29,7 @@ use Symfony\Component\Routing\Attribute\Route;
         try {
             $messageBus->dispatch(
                 new CreateClientCommand(
+                    $model->company,
                     $model->nom,
                     $model->email,
                     $model->telephone,
